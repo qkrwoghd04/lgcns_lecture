@@ -6,11 +6,18 @@ export default function BoardList() {
   const [datas, setDatas] = useState([]);
   const token = sessionStorage.getItem("token");
 
+  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+  console.log(import.meta.env.VITE_REST_API_SERVER_IP)
+  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+
+  const rest_api_host = import.meta.env.VITE_REST_API_HOST;
+  const rest_api_port = import.meta.env.VITE_REST_API_PORT;
+
   useEffect(() => {
 
     axios({
       method: "GET",
-      url: "http://localhost:8080/api/v2/board",
+      url: `http://localhost:8080/api/v2/board`,
       headers: { "Authorization": `Bearer ${token}` },
     })
       .then(res => {
