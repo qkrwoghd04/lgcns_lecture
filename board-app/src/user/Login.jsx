@@ -11,16 +11,19 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  const rest_api_host = import.meta.env.VITE_REST_API_HOST;
+	const rest_api_port = import.meta.env.VITE_REST_API_PORT;
+	console.log({rest_api_host, rest_api_port});
 
-    axios({
-      method: "POST",
-      url: "http://localhost:8080/loginProc",
-      data: { username, password },
-      headers: { "Content-Type": "application/json" }
-    })
-      .then(res => {
+	const handleSubmit = e => {
+    	e.preventDefault();
+   	 
+    	axios({
+        	method: "post",
+        	url: `http://${rest_api_host}:${rest_api_port}/loginProc`,
+        	data: { username, password },
+        	headers: { "Content-Type": "application/json" }
+    	}).then(res => {
         console.log(res.data);
         // JWT 토큰을 세션 스토리지에 저장
         sessionStorage.setItem("token", res.data);

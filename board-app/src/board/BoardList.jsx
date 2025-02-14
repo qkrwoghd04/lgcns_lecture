@@ -17,7 +17,7 @@ export default function BoardList() {
 
     axios({
       method: "GET",
-      url: `http://localhost:8080/api/v2/board`,
+      url: `http://${rest_api_host}:${rest_api_port}/api/v2/board`,
       headers: { "Authorization": `Bearer ${token}` },
     })
       .then(res => {
